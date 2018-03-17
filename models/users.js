@@ -9,8 +9,6 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(passportLocalMongoose);
 
-UserSchema.plugin(passportLocalMongoose);
-
 
 var User = mongoose.model("User", UserSchema);
 
