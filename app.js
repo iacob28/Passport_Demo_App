@@ -4,7 +4,7 @@ var express               = require("express"),
     bodyParser            = require("body-parser"),
     LocalStrategy         = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose"),
-    
+    expressSession        = require("express-session")    
     User                  = require("./models/users");
 
 var app = express();
@@ -18,6 +18,17 @@ db.once('open', function () {
 
 });
 
+app.use(expressSession({
+    secret: "Aceasta este o aplicatie demo Passport",
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use(bodyParser.urlencoded({
     extended: true
