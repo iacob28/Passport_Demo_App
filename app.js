@@ -101,7 +101,7 @@ app.get("/logout", function(req, res){
     res.redirect("/");
 });
 
-//middleware custom
+//custom middleware
 
 function isLoggedin(req, res, next){
     if(req.isAuthenticated()){
